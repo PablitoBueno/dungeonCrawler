@@ -33,12 +33,11 @@ func _physics_process(delta):
 	
 	move_and_slide(velocity)
 
-	if Input.is_action_just_pressed("attack"):
+	# Ataca ao apertar tecla de ataque ou botão esquerdo do mouse
+	if Input.is_action_just_pressed("attack") or Input.is_action_just_pressed("mouse_left_click"):
 		sword_instance.activate_attack()
 
 func take_damage(amount):
 	health -= amount
 	if health <= 0:
-		queue_free() # Player desaparece
-
-
+		queue_free()
