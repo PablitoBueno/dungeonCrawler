@@ -11,7 +11,8 @@ var sword_instance = null
 func _ready():
 	sword_instance = sword_scene.instance()
 	add_child(sword_instance)
-	sword_instance.position = Vector2(20, 0)
+	# garante que a espada comece na posição de repouso desejada
+	sword_instance.position = Vector2(42.043, 30.14)
 
 func _physics_process(delta):
 	var velocity = Vector2.ZERO
@@ -33,8 +34,9 @@ func _physics_process(delta):
 	
 	move_and_slide(velocity)
 
-	# Ataca ao apertar tecla de ataque ou botão esquerdo do mouse
-	if Input.is_action_just_pressed("attack") or Input.is_action_just_pressed("mouse_left_click"):
+	# enquanto o jogador mantém o botão de ataque, tentamos ativar o ataque;
+	# a espada recusará se já estiver em ataque (is_attacking), evitando o bug
+	if Input.is_action_pressed("attack") or Input.is_action_pressed("mouse_left_click"):
 		sword_instance.activate_attack()
 
 func take_damage(amount):
