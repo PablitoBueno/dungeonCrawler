@@ -36,7 +36,7 @@ func _physics_process(delta):
 
 	# enquanto o jogador mantém o botão de ataque, tentamos ativar o ataque;
 	# a espada recusará se já estiver em ataque (is_attacking), evitando o bug
-	if Input.is_action_pressed("attack") or Input.is_action_pressed("mouse_left_click"):
+	if Input.is_action_pressed("attack"):
 		sword_instance.activate_attack()
 
 func take_damage(amount):
